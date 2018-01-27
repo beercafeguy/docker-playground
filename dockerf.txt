@@ -1,0 +1,190 @@
+
+route add 172.17.0.0 mask 255.255.0.0 10.0.75.2 -p
+
+docker version
+docker info
+sudo docker run hello-world
+docker run -it ubuntu bash //-it -> Interective mode
+docker run -p 8081:8081 <docker container port: Parent OS port> -p 50000:50000 jenkins <name of the image>
+
+
+docker run -p 8081:8081 -p 50000:50000 jenkins
+docker run -it centos /bin/bash -- /bin/bash is used to start the bash shell once centos is up
+docker images
+docker rmi <ImageID> --remove docker image
+docker inspect <Repository or name of the image>
+
+docker inspect ubuntu
+docker ps --list containers
+docker ps -a --list all containers
+docker history <Image ID>
+docker top <container ID> --processes running on container
+ 
+docker stop <container ID> -- to stop a running container
+docker start <container ID> -- to start a stopped container
+docker stats <container ID> -- get the stats of a container (health)
+docker rm <container ID> --remove container (This will remove the container from ps -a unlike docker stop)
+Ctrl+P+Q for detacing a container
+docker attach <container ID>
+docker pause <container ID> 
+docker unpause <container ID>
+docker kill <container ID> --kill the processes in a running container
+
+docker run --rm -v /usr/local/bin:/target jpetazzo/nsenter --nsenter image
+docker inspect b689add98c2d|findstr /C /R "Pid"
+
+
+FROM ubuntu
+MAINTAINER hchandra@adobe.com
+
+RUN apt-get update
+RUN apt-get install –y nginx
+CMD ["echo","Image created"] 
+
+
+docker build -t test:latest . <lest argument is Dockerfile location>
+
+docker login
+
+
+docker tag d837f50cddc4<image ID> test<repository name>
+docker tag d837f50cddc4 beercafeguy/test:latest
+docker push beercafeguy/test:latest <repo name>
+docker pull beercafeguy/test:latest
+docker run -it --rm -p 8888:8080 tomcat:8.0
+
+
+docker pull jenkins
+
+
+
+docker build -t python_app .
+
+
+IN windows : Unable to login/ change DNS to hardcoded 8.8.8.8
+
+
+port management
+docker inspect jenkins <to check ports>
+docker run -p 8080:8085 -p 50000:50000 jenkins
+
+
+FROM ubuntu 
+RUN apt-get update 
+RUN apt-get install –y apache2 
+RUN apt-get install –y apache2-utils 
+RUN apt-get clean 
+EXPOSE 80 
+CMD [“apache2ctl”, “-D”, “FOREGROUND”]
+
+docker build -t apacheweb:0.1 .
+
+
+
+#docker on unix
+sudo apt-get update
+
+#Install packages to allow apt to use a repository over HTTPS:
+
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+	
+Add Docker’s official GPG key:
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+   
+sudo apt-get update
+sudo apt-get install docker-ce
+
+
+
+
+#run docker container in the background, in detached mode:
+
+docker run -d -p 4000:80 friendlyhello
+
+
+#in windows Ctrl+c won't stop the container 
+docker stop <container ID> -- to stop a running container
+docker kill <container ID> --kill the processes in a running container
+docker container stop <container id>
+
+docker login
+docker tag python_app beercafeguy/python_app:ver1
+
+
+docker image ls
+
+
+location in host machine
+/var/lib/docker
+
+
+A docker-compose.yml file is a YAML file that defines how Docker containers should behave in production.
+
+#DOcker swarm
+docker swarm init
+
+#We’ll get into the meaning of that command in part 4. If you don’t run docker swarm init you’ll get an error that “this node is not a swarm manager.”
+
+docker stack deploy -c docker-compose.yml compose_py_app
+docker service ls
+
+docker stack rm compose_py_app
+docker swarm leave --force
+
+
+A swarm is a group of machines that are running Docker and joined into a cluster. After that has happened, you continue to run the Docker commands you’re used to, but now they are executed on a cluster by a swarm manager. The machines in a swarm can be physical or virtual. After joining a swarm, they are referred to as nodes
+
+
+
+curl -L https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-`uname -s`-`uname -m` >/tmp/docker-machine && \
+chmod +x /tmp/docker-machine && \
+sudo cp /tmp/docker-machine /usr/local/bin/docker-machine
+
+scripts=( docker-machine-prompt.bash docker-machine-wrapper.bash docker-machine.bash ); 
+for i in "${scripts[@]}"; 
+do 
+	sudo wget https://raw.githubusercontent.com/docker/machine/v0.13.0/contrib/completion/bash/${i} -P /etc/bash_completion.d; 
+done
+
+
+
+
+
+
+# Creating own swarm
+docker-machine create -d hyperv --hyperv-virtual-switch "demoswitch" myvm1
+docker-machine create -d hyperv --hyperv-virtual-switch "demoswitch" myvm2
+
+
+docker-machine ssh myvm1 "docker swarm init --advertise-addr 192.168.1.19"
+docker-machine ssh myvm2 "docker swarm join --token SWMTKN-1-0y3jxjlmp5xwqu7du1fqk2m531ch4pd5gl8asezdja4gxxi9zh-20irtvvtp5y0k9ri20h1xfowe 192.168.1.19:2377"
+
+
+docker-machine ssh myvm1 "docker node ls"
+
+docker stack deploy -c docker-compose.yml python_app
+docker service ls
+docker service ps python_app
+docker-machine ls
+
+docker stack rm python_app
+
+docker-machine ssh myvm2 "docker swarm leave"
+docker-machine ssh myvm1 "docker swarm leave --force" 
+
+
+
+
+
+
+
