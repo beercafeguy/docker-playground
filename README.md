@@ -35,3 +35,8 @@ This repo is the for the reference of all my work which I do on docker.
 `docker port redis-host 6379` <br>
 
 * Docker containers are stateless by nature.
+* Mention multiple ports or renge of ports in Dockerfile EXPOSE command.
+`EXPOSE 80 433` or `EXPOSE 8080-8090 `
+
+* If we don't want to used cached info, use `--no-cache=true` with docker build.
+
