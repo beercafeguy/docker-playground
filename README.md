@@ -23,3 +23,15 @@ This repo is the for the reference of all my work which I do on docker.
 `docker exec -it <container name> bash` <to attach> <br>
 `docker exec -it <container name> ls -l` <br>
 
+* Inspect a container <br>
+`docker inspect <name of container>` <br>
+
+* On -p option of run one can specify ip address as well. <br>
+`docker run -d --name redis-host -p 127.0.0.1:6379:6379 redis` <br>
+
+* If we don't assign host port number with -p option during run, it assignes a random port number on host machine which can be checked using `docker port` command. <br>
+`docker run -d --name redis-host -p 6379 redis` <br>
+`docker port <container name> <port no>` <br>
+`docker port redis-host 6379` <br>
+
+* Docker containers are stateless by nature.
