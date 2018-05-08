@@ -53,9 +53,19 @@ docker push beercafeguy/test:latest <repo name>
 docker pull beercafeguy/test:latest
 docker run -it --rm -p 8888:8080 tomcat:8.0
 
+PS C:\Users\hchandra> 
 
 docker pull jenkins
 
+docker run --name mysql-standalone -e MYSQL_ROOT_PASSWORD=password -d mysql:5.6
+docker logs mysql-standalone
+
+docker run -it --link mysql-standalone:mysql --rm mysql sh -c 'exec mysql -h"$MYSQL_PORT_3306_TCP_ADDR" -P"$MYSQL_PORT_3306_TCP_PORT" -uroot -p"$MYSQL_ENV_MYSQL_ROOT_PASSWORD"'
+
+docker run --name boot_mysql_app -p 8087:8087 --link mysql-standalone:mysql -d beercafeguy/boot_mysql_app:V1
+
+
+docker build -t boot_mysql_app:V1 --build-arg JAR_FILE=target/spring-boot-mysql-0.0.1-SNAPSHOT.jar .
 
 
 docker build -t python_app .
@@ -181,6 +191,14 @@ docker stack rm python_app
 
 docker-machine ssh myvm2 "docker swarm leave"
 docker-machine ssh myvm1 "docker swarm leave --force" 
+
+
+
+docker run -it -e ENV=STAGE ubuntu bash
+docker run -it --env-file .\myenv.conf ubuntu bash
+docker run -it --env-file .\myenv.conf -e ENV=PROD ubuntu bash
+# -e will override --env-file
+
 
 
 
