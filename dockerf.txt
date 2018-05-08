@@ -35,7 +35,7 @@ docker inspect b689add98c2d|findstr /C /R "Pid"
 
 
 FROM ubuntu
-MAINTAINER hchandra@adobe.com
+MAINTAINER hchandra@beercafeguy.com
 
 RUN apt-get update
 RUN apt-get install –y nginx
