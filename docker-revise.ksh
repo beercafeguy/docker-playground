@@ -29,3 +29,13 @@ mongo-express
 
 
 # Docker compose
+docker compose -f mongo.yaml up
+docker compose -f mongo.yaml down
+
+#docker build 
+ docker build -t nodeapp:0.1 .
+
+# docker tag 
+# docker login
+# docker push 
+
