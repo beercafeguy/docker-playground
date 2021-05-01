@@ -24,8 +24,6 @@ docker run -d \
 -e ME_CONFIG_MONGODB_ADMINPASSWORD="password" \
 -e ME_CONFIG_OPTIONS_EDITORTHEME="ambiance" \
 -e ME_CONFIG_MONGODB_SERVER="mongodb" \
--e ME_CONFIG_BASICAUTH_USERNAME="admin" \
--e ME_CONFIG_BASICAUTH_PASSWORD="password" \
 mongo-express
 
 
