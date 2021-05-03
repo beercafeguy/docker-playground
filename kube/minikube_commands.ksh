@@ -31,3 +31,13 @@ kubectl apply -f <filename.yaml
 kubectl apply -f nginx-deployment.yaml
 
 kubectl get pod -o wide (more details of pod)
+
+# Setup mongo
+
+kubectl apply -f mongo-secret.yaml
+minikube service mongo-express-service # to create tunnel
+
+minikube service mongo-express-service
+kubectl cluster-info
+
+kubectl get namespaces
