@@ -41,3 +41,4 @@ minikube service mongo-express-service
 kubectl cluster-info
 
 kubectl get namespaces
+kubectl get ingress -n mynamespace
