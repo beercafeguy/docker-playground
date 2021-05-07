@@ -1,0 +1,14 @@
+version: '3'
+services:
+  pyspark_nb:
+    image: jupyter/pyspark-notebook
+    ports:
+      - 8888:8888
+    volumes:
+      - /mnt/c/Users/hem/data:/home/jovyan/data/
+      - /mnt/c/Users/hem/git/PyMLLab/:/home/jovyan/PyMLLab/
+    environment:
+      - GRANT_SUDO=yes
+    user: jovyan
+volumes:
+  v_pyspark:

@@ -42,3 +42,6 @@ kubectl cluster-info
 
 kubectl get namespaces
 kubectl get ingress -n mynamespace
+
+# Helm -> K8s package manager like apt in ubuntu
+# 

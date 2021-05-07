@@ -39,3 +39,4 @@ docker compose -f mongo.yaml down
 # docker login
 # docker push 
 
+ docker run -p 8888:8888 jupyter/pyspark-notebook
