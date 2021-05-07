@@ -35,3 +35,4 @@ FROM
 where start_date < end_date
 GROUP BY start_date
 ORDER BY datediff(start_date, MIN(end_date)) DESC, start_date
+

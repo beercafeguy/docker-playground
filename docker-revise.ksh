@@ -39,4 +39,7 @@ docker compose -f mongo.yaml down
 # docker login
 # docker push 
 
- docker run -p 8888:8888 jupyter/pyspark-notebook
+docker run -p 8888:8888 -v C:\\Users\\hem\\data:/data/ -v C:\\Users\\hem\\data:/home/jovyan/data/ -v C:\\Users\\hem\\git\\PyMLLab\\:/home/jovyan/PyMLLab/ jupyter/pyspark-notebook 
+
+# we can run this in windows TLS like follows 
+docker run -p 8888:8888 -v ~/data:/home/jovyan/data/ -v ~/git/PyMLLab/:/home/jovyan/PyMLLab/ jupyter/pyspark-notebook 
