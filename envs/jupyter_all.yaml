@@ -1,0 +1,16 @@
+version: '3'
+services:
+  jupyter_all:
+    image: jupyter/all-spark-notebook
+    ports:
+      - 8888:8888
+      - 4040:4040
+    volumes:
+      - /mnt/c/Users/hem/data:/home/jovyan/data/
+      - /mnt/c/Users/hem/git/PyMLLab/:/home/jovyan/PyMLLab/
+    environment:
+      - GRANT_SUDO=yes
+      - JUPYTER_ENABLE_LAB=yes
+    user: jovyan
+volumes:
+  v_jupyter_all:
