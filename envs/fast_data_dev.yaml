@@ -1,0 +1,15 @@
+version: '3'
+services:
+  kafka_service:
+    image: lensesio/fast-data-dev
+    ports:
+      - 2181:2181
+      - 3030:3030
+      - 18081:8081
+      - 18082:8082
+      - 18083:8083
+      - 9581-9585:9581-9585
+      - 9092:9092
+    environment:
+      - RUNNING_SAMPLEDATA=1
+      - ADV_HOST=172.29.6.199
