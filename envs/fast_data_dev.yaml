@@ -12,4 +12,4 @@ services:
       - 9092:9092
     environment:
       - RUNNING_SAMPLEDATA=1
-      - ADV_HOST=172.29.6.199
+      - ADV_HOST=#give your IP here
